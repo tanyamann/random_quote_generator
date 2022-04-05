@@ -1,7 +1,21 @@
 body{
-    background-color: rgb(155, 202, 202);
+    background-color: rgba(155, 202, 202, 0.692);
+    font-size: 2em;
 }
+.quotes {
+    /* height: 200px;
+    position: relative; */
+    text-align: center;
+    margin: auto;
+}
+
 #quoteGen {
     height: 70px;
-    width: 100px;
+    width: 200px;
+    position: center;
+    border-radius: 12px;
+    font-size: .5em;
+    background-color:rgb(217, 211, 241);
 }
+#quoteGen:hover {
+    background-color: rgb(175, 180, 240)
