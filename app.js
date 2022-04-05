@@ -1,38 +1,21 @@
 // console.log('connected!')
-//const url="https://type.fit/api/quotes" 
 
-// const button = document.getElementById('button');
-// Fetching the quotes from the type.fit API using promises
-// showQuote=()=>{
-//         let displayQuote = document.querySelector(".displayQuote")
-fetch("https://type.fit/api/quotes")
-    .then(function(response) {
-        return response.json(); 
-    }) // Getting the raw JSON data
-    .then(function(data) {
-        // Storing the quotes internally upon 
-        // successful completion of request
-        this.data = data; 
-    // }) // Setting
-        // Displaying the quote When the Webpage loads
-        displayQuote() 
-    
-});
-// Adding an onclick listener for the button
- 
-// Adding an onclick listener for the button
-// function newQuote(){
-// showQuote=()=>{
-//     let displayQuote = document.querySelector(".displayQuote")
-//     let url = "https://type.fit/api/quotes";
+const auth = document.getElementById('randoQuoteAuth');
+const quote = document.getElementById('randoQuote');
+const quoteGen = document.getElementById('quoteGen');
 
-// fetch(url) 
-//     .then(response =>{
-//       return response.json()
-//     })
-//     .then(responseData => {
-//         // console.log("response", responseData)
-//         displayQuote.innerHTML = responseData.value;
-//     })
+async function getQuotes(){
+    const response = await fetch("https://type.fit/api/quotes");
+    const allQuotes = await response.json();
+    let randomizer = Math.floor(Math.random() * allQuotes.length);
+    console.log(allQuotes[randomizer].author);
+    quote.innerHTML = allQuotes[randomizer].text;
+    if(allQuotes[randomizer].author === null) {
+        auth.innerHTML = "Unknown";
+    } else {
+        auth.innerHTML = allQuotes[randomizer].author;
+    }
     
-// }
+}
+
+quoteGen.addEventListener('click', getQuotes);
